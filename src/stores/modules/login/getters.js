@@ -1,3 +1,3 @@
-export const loggedInUser = (state) => {
-    return state.user !== null;
+export const loggedIn = (state) => {
+    return state.token !== null;
 }

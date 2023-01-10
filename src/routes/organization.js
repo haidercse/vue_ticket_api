@@ -10,7 +10,7 @@ const organization = [{
     path: '/organization',
     name: "OrganizationList",
     component: OrganizationList,
-
+    
 }, ]
 
 export default organization;

@@ -1,4 +1,3 @@
 export default {
-    user: null,
-    isAuthenticate: false
+    token :localStorage.getItem('user') || null ,
 }
