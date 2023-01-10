@@ -1,3 +1,5 @@
 export default {
-    token :localStorage.getItem('user') || null ,
+    token: localStorage.getItem('user') || null,
+    user: [],
+    authUser: null,
 }

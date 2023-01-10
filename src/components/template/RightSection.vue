@@ -17,7 +17,7 @@
           alt="Header Avatar"
           style="width: 21px"
         />
-        <span class="d-none d-sm-inline-block ml-2">{{ user.name }}</span>
+        <span class="d-none d-sm-inline-block ml-2">Haider</span>
         <i
           class="fa fa-fw fa-angle-down d-none d-sm-inline-block ml-1 mt-1"
         ></i>
@@ -32,7 +32,7 @@
             src="assets/media/avatars/avatar10.jpg"
             alt=""
           />
-          <p class="mt-2 mb-0 text-white font-w500">{{ user.name }}</p>
+          <p class="mt-2 mb-0 text-white font-w500">Haider</p>
           <p class="mb-0 text-white-50 font-size-sm">Web Developer</p>
         </div>
         <div class="p-2">
@@ -221,6 +221,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     data(){
         return{
@@ -228,12 +229,11 @@ export default {
         }
     },
   mounted() {
-    if (localStorage.getItem("user")) {
-        let user = JSON.parse(localStorage.getItem("user"));
-        this.user = user.data;
-    
-    }
+      this.getAuthUser();
   },
+  methods: {
+    ...mapActions(['getAuthUser'])
+  }
 };
 </script>
 

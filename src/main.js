@@ -5,7 +5,6 @@ import router from './routes'
 import store from './stores'
 
 
-
 const app = createApp(App)
 
 app.use(createPinia())
