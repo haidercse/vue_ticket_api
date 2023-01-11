@@ -13,49 +13,49 @@ import Registration from '../pages/Registration.vue'
 import Login from '../pages/Login.vue'
 
 const routes = [{
-    path: '/',
-    name: "Home",
-    component: Home,
-    meta: {
-        requiresAuth: true
-    }
+        path: '/',
+        name: "Home",
+        component: Home,
+        meta: {
+            requiresAuth: true
+        }
 
-},
-{
-    path: '/registration',
-    name: "Registration",
-    component: Registration,
-    meta: {
-        visited: true
-    }
+    },
+    {
+        path: '/registration',
+        name: "Registration",
+        component: Registration,
+        meta: {
+            visited: true
+        }
 
-},
-{
-    path: '/login',
-    name: "Login",
-    component: Login,
-    meta: {
-        visited: true
-    }
+    },
+    {
+        path: '/login',
+        name: "Login",
+        component: Login,
+        meta: {
+            visited: true
+        }
 
 
-}, {
-    path: '/organization-create',
-    name: "OrganizationCreate",
-    component: OrganizationCreate,
-    meta: {
-        requiresAuth: true
-    }
+    }, {
+        path: '/organization-create',
+        name: "OrganizationCreate",
+        component: OrganizationCreate,
+        meta: {
+            requiresAuth: true
+        }
 
-}, {
-    path: '/organization',
-    name: "OrganizationList",
-    component: OrganizationList,
-    meta: {
-        requiresAuth: true
-    }
+    }, {
+        path: '/organization',
+        name: "OrganizationList",
+        component: OrganizationList,
+        meta: {
+            requiresAuth: true
+        }
 
-},
+    },
     // ...loginRegistration,
     // ...organization
 
@@ -79,11 +79,11 @@ router.beforeEach((to, from, next) => {
     } else if (to.matched.some(record => record.meta.visited)) {
         if (store.getters.loggedIn) {
             next({ name: 'Home' })
+
         } else {
             next()
         }
-    }
-    else {
+    } else {
         next()
     }
 

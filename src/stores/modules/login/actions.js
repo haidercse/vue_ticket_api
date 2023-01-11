@@ -11,7 +11,6 @@ export const loginUser = ({
                 commit("SET_SUCCESS", response.data.message);
 
                 router.push({ path: '/' });
-
                 localStorage.setItem("user", JSON.stringify(response.data.token));
             }
         }).catch(error => {
@@ -19,14 +18,14 @@ export const loginUser = ({
         });
 }
 
-export const getAuthUser = (commit) => {
+export const getAuthUser = ({
+    commit
+}) => {
     login.getAuthUser()
         .then((response) => {
             if (response.data.status == true) {
-                console.log(response.data);
                 commit('SET_AUTH_USER', response.data.data)
             }
-
         }).catch(error => {
             commit("SET_ERRORS", error.response.data.errors);
         });

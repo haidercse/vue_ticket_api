@@ -1,12 +1,13 @@
 import Api from "./Api";
-const access_token = localStorage.getItem("user");
+// const access_token = localStorage.getItem("user");
 
 export default {
     store(data) {
+        console.log('data' + data);
         return Api.post('/auth/login/', data);
     },
 
     getAuthUser() {
-        return Api.get('/user/auth-user');
+        return Api.get('/user/auth');
     }
 }
