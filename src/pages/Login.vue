@@ -127,8 +127,6 @@ export default {
     ...mapActions(["loginUser"]),
     submitForm() {
       let data = this.form;
-      console.log(data);
-    
       this.loginUser(data);
     },
   },

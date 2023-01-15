@@ -21,6 +21,9 @@
       <div class="content">
         <!-- Full Table -->
         <div class="block block-rounded">
+          <!-- error message -->
+          <ShowError></ShowError>
+          <ShowSuccess></ShowSuccess>
           <div class="block-header">
             <h3 class="block-title">Organization Create</h3>
             <div class="block-options">
@@ -34,69 +37,43 @@
             </div>
           </div>
           <div class="block-content">
-            <form>
+            <form @submit.prevent="submitForm()">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputEmail4">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputPassword4">Password</label>
+                  <label for="name">Organization Name <span>*</span> </label>
                   <input
-                    type="password"
+                    type="text"
                     class="form-control"
-                    id="inputPassword4"
+                    id="name"
+                    v-model="form.name"
+                    placeholder="Enter Organization Name"
                   />
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputAddress"
-                  placeholder="1234 Main St"
-                />
-              </div>
-              <div class="form-group">
-                <label for="inputAddress2">Address 2</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputAddress2"
-                  placeholder="Apartment, studio, or floor"
-                />
-              </div>
-              <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputCity">City</label>
-                  <input type="text" class="form-control" id="inputCity" />
-                </div>
-                <div class="form-group col-md-4">
-                  <label for="inputState">State</label>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-2">
-                  <label for="inputZip">Zip</label>
-                  <input type="text" class="form-control" id="inputZip" />
+                  <label for="short_name">Short Name <span>*</span> </label>
+                  <input
+                    type="text"
+                    placeholder="Enter Short Name"
+                    class="form-control"
+                    id="short_name"
+                    v-model="form.short_name"
+                  />
                 </div>
               </div>
               <div class="form-group">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="gridCheck"
-                  />
-                  <label class="form-check-label" for="gridCheck">
-                    Check me out
-                  </label>
-                </div>
+                <label for="address">Address</label>
+                <textarea
+                  id="address"
+                  cols="30"
+                  rows="10"
+                  v-model="form.address"
+                  class="form-control"
+                  placeholder="Address...."
+                ></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
             </form>
           </div>
         </div>
@@ -116,8 +93,30 @@ import { mapActions, mapState } from "vuex";
 import Footer from "../template/Footer.vue";
 import Sidebar from "../template/Sidebar.vue";
 import HeaderComp from "../template/HeaderComponent.vue";
+import ShowError from "../utilities/ShowError.vue";
+import ShowSuccess from "../utilities/ShowSuccess.vue";
 export default {
-  components: { Sidebar, Footer, HeaderComp },
+  data(){
+    return{
+       form: {
+         name: "",
+         short_name: "",
+         address: ""
+       }
+    }
+  },
+  components: { Sidebar, Footer, HeaderComp, ShowError, ShowSuccess },
+  methods: {
+    ...mapActions(['addOrganization']),
+    submitForm(){
+       let data = this.form;
+       this.addOrganization(data);
+
+       this.form.name = "";
+       this.form.short_name = "";
+       this.form.address = "";
+    }
+  }
 };
 </script>
   
